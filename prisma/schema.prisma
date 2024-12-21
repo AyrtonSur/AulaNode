@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  firstname String
+  lastname  String
+  username  String
+  cpf       String   @unique
+  birthdate DateTime
+  email     String   @unique
+  password  String
+
+  @@map("users")
+}
+
+model Movie {
+  id        String    @id @default(uuid())
+  title     String
+  imageURL  String
+  synopse   String
+  genre     String
+  ageRating Int
+  director  String
+  sessions  Session[]
+
+  @@map("movies")
+}
+
+model Session {
+  id            String   @id @default(uuid())
+  startTime     DateTime
+  city          String
+  neighboorhood String
+  type          Int
+  movieId       String
+  movie         Movie    @relation(fields: [movieId], references: [id])
+  seats         Seat[]
+
+  @@map("sessions")
+}
+
+model Seat {
+  id           String  @id @default(uuid())
+  number       Int
+  row          String
+  price        Float
+  occupierCPF  String
+  occupierName String
+  sessionId    String
+  session      Session @relation(fields: [sessionId], references: [id])
+
+  @@map("seats")
+}

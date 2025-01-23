@@ -2,6 +2,7 @@ import fastify from 'fastify'
 import { userRoutes } from './http/controllers/users/routes';
 import { ZodError } from 'zod';
 import { movieRoutes } from './http/controllers/movies/routes';
+import { sessionRoutes } from './http/controllers/sessions/routes';
 
 export const app = fastify()
 
@@ -11,6 +12,7 @@ app.get('/', async (request, reply) => {
 
 app.register(userRoutes)
 app.register(movieRoutes)
+app.register(sessionRoutes)
 
 app.setErrorHandler((error, request, reply) => {
      if (error instanceof ZodError) {

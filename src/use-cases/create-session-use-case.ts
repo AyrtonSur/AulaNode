@@ -13,7 +13,7 @@ interface CreateSessionUseCaseResponse {
 export class CreateSessionUseCase {
      constructor(private sessionsRepository: SessionsRepository) {}
 
-     async execute({ startTime, movieId }: CreateSessionUseCaseRequest): Promise<CreateSessionUseCaseResponse> {   
+     async execute({ startTime, movieId }: CreateSessionUseCaseRequest): Promise<CreateSessionUseCaseResponse> {
           const session = await this.sessionsRepository.create({
                startTime,
                movieId,

@@ -36,7 +36,6 @@ model Movie {
 model Session {
   id            String   @id @default(uuid())
   startTime     DateTime
-  type          Int
   movieId       String
   movie         Movie    @relation(fields: [movieId], references: [id])
   seats         Seat[]

@@ -10,7 +10,7 @@ interface CreateSessionUseCaseResponse {
      session: Session
 }
 
-export class RegisterUseCase {
+export class CreateSessionUseCase {
      constructor(private sessionsRepository: SessionsRepository) {}
 
      async execute({ startTime, movieId }: CreateSessionUseCaseRequest): Promise<CreateSessionUseCaseResponse> {   

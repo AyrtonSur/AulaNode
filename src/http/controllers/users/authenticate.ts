@@ -20,7 +20,7 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
                password
           })
      } catch (err) {
-          
+          throw err
      }
 
      return reply.status(200).send({ message: 'Usuário autenticado com sucesso' })

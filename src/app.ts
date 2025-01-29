@@ -1,6 +1,7 @@
 import fastify from 'fastify'
-import { appRoutes } from './http/routes'
+import { userRoutes } from './http/controllers/users/routes'
 import { ZodError } from 'zod'
+import { moviesRoutes } from './http/controllers/movies/routes'
 
 export const app = fastify()
 
@@ -8,7 +9,8 @@ app.get('/hello', (request, reply) => {
      return { message: 'Hello Word'}
 })
 
-app.register(appRoutes)
+app.register(userRoutes)
+app.register(moviesRoutes)
 
 app.setErrorHandler((error, request, reply) => {
      if (error instanceof ZodError) {

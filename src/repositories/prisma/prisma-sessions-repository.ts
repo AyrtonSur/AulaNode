@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
-import { SessionsRepository } from "../sessions-repostiory";
+import { SessionsRepository } from "../sessions-repostory";
 
 export class PrismaSessionsRepository implements SessionsRepository {
      async create(data: Prisma.SessionUncheckedCreateInput) {

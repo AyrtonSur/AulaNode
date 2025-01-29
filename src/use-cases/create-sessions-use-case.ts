@@ -1,4 +1,4 @@
-import { SessionsRepository } from "@/repositories/sessions-repostiory"
+import { SessionsRepository } from "@/repositories/sessions-repostory"
 import { Session } from "@prisma/client"
 
 interface CreateSessionUseCaseRequest {

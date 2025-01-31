@@ -6,6 +6,7 @@ import { deleteUser } from "./delete";
 import { update } from "./update";
 import { profile } from "./profile";
 import { verifyJWT } from "@/http/middlewares/verify-jwt";
+import { refresh } from "./refresh";
 
 export async function userRoutes(app: FastifyInstance) {
      app.post('/users', register)
@@ -16,6 +17,8 @@ export async function userRoutes(app: FastifyInstance) {
      app.delete('/users/:userId', deleteUser)
 
      app.patch('/users/:userId', update)
+
+     app.patch('/token/refresh', refresh)
 
      //Authenticated
      app.get('/profile', {onRequest: [verifyJWT]}, profile)

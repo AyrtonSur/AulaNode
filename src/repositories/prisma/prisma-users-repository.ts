@@ -1,9 +1,22 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma, User } from "@prisma/client";
-import { UsersRepository } from "../users-repository";
+import { UsersRepository, UserUpdateInput } from "../users-repository";
 
 export class PrismaUsersRepository implements UsersRepository {
-     async delete(id: string): Promise<User | null> {
+     async update(id: string, data: UserUpdateInput): Promise<User | null> {
+          const user = await prisma.user.update({
+               where: { id },
+               data: {
+                    name: data.name,
+                    username: data.username,
+                    email: data.email,
+                    password: data.password
+          }
+          })
+          return user
+     }
+
+     async delete(id: string) {
           const user = await prisma.user.delete({
                where: {
                     id

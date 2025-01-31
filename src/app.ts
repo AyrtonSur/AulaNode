@@ -4,17 +4,23 @@ import { ZodError } from 'zod';
 import { movieRoutes } from './http/controllers/movies/routes';
 import { sessionRoutes } from './http/controllers/sessions/routes';
 import fastifyJwt from '@fastify/jwt';
+import fastifyCookie from '@fastify/cookie'
 import { env } from './env';
 
 export const app = fastify()
 
-app.get('/', async (request, reply) => {
-     return { message: 'Hello, World!' };
-});
-
 app.register(fastifyJwt, {
-     secret: env.JWT_SECRET
+     secret: env.JWT_SECRET,
+     cookie: {
+          cookieName: 'refreshToken',
+          signed: false,
+     },
+     sign: {
+          expiresIn: '10m'//10 minutos
+     }
 })
+
+app.register(fastifyCookie)
 
 app.register(userRoutes)
 app.register(movieRoutes)

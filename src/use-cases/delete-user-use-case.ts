@@ -1,27 +1,29 @@
-import { UsersRepository } from "@/repositories/users-repository"
-import { User } from "@prisma/client"
-import { ResourceNotFoundError } from "./errors/resource-not-found-error"
+import { type UsersRepository } from '@/repositories/users-repository'
+import { type User } from '@prisma/client'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface DeleteUserUseCaseRequest {
-     userId: string
+  userId: string
 }
 
 interface DeleteUserUseCaseResponse {
-     user: User
+  user: User
 }
 
 export class DeleteUserUseCase {
-     constructor(private usersRepository: UsersRepository) {}
+  constructor(private readonly usersRepository: UsersRepository) {}
 
-     async execute( { userId }: DeleteUserUseCaseRequest ): Promise<DeleteUserUseCaseResponse> {   
+  async execute({
+    userId,
+  }: DeleteUserUseCaseRequest): Promise<DeleteUserUseCaseResponse> {
+    const user = await this.usersRepository.findById(userId)
 
-          const user = await this.usersRepository.findById(userId)
-          if (!user) {
-               throw new ResourceNotFoundError()
-          }
+    if (user === null) {
+      throw new ResourceNotFoundError()
+    }
 
-          await this.usersRepository.delete(userId)
+    await this.usersRepository.delete(userId)
 
-          return { user }
-     }    
+    return { user }
+  }
 }

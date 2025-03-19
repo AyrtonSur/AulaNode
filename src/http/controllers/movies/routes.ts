@@ -1,6 +1,6 @@
-import { FastifyInstance } from "fastify";
-import { create } from "./create";
+import { type FastifyInstance } from 'fastify'
+import { create } from './create'
 
 export async function movieRoutes(app: FastifyInstance) {
-     app.post('/movies', create)
+  app.post('/movies', create)
 }

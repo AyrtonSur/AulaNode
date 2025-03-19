@@ -1,5 +1,5 @@
-import { Prisma, Session } from "@prisma/client";
+import { type Prisma, type Session } from '@prisma/client'
 
 export interface SessionsRepository {
-     create(data: Prisma.SessionUncheckedCreateInput): Promise<Session>
+  create: (data: Prisma.SessionUncheckedCreateInput) => Promise<Session>
 }

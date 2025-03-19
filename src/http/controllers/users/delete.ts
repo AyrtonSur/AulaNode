@@ -26,6 +26,7 @@ export async function deleteUser(request: FastifyRequest, reply: FastifyReply) {
     if (err instanceof ResourceNotFoundError) {
       return await reply.status(404).send({ message: err.message })
     }
+    
     throw err
   }
 }

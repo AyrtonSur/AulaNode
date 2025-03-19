@@ -35,6 +35,7 @@ export async function changePassword(
     if (err instanceof ResourceNotFoundError) {
       reply.status(404).send({ message: err.message })
     }
+    
     throw err
   }
 }

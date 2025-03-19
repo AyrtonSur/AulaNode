@@ -21,9 +21,9 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       startTime,
       movieId,
     })
-  } catch (err) {
-    throw new Error()
-  }
 
-  return await reply.status(201).send('Session criada com sucesso')
+    return await reply.status(201).send('Session criada com sucesso')
+  } catch (err) {
+    return await reply.status(500).send({ message: 'Failed to create Session' })
+  }
 }

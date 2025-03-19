@@ -24,6 +24,7 @@ export class CreateMovieUseCase {
       genre,
       ageRating,
     })
+
     return { movie }
   }
 }

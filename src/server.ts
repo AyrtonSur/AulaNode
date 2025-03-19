@@ -12,7 +12,7 @@ app.listen(
       app.log.error(err)
       process.exit(1)
     }
-    
+
     console.log(
       `🚀 Server running! \nServer listening at ${address}\n\nCtrl+C to Stop`,
     )

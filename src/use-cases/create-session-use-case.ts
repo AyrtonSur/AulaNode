@@ -21,6 +21,7 @@ export class CreateSessionUseCase {
       startTime,
       movieId,
     })
+
     return { session }
   }
 }

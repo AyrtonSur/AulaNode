@@ -30,6 +30,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     if (err instanceof UserAlreadyExistsError) {
       return await reply.status(409).send({ message: err.message })
     }
+
     throw err
   }
 

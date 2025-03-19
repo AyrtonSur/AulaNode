@@ -23,7 +23,7 @@ export class ChangePasswordUserUseCase {
     console.log('password:', password)
 
     const user = await this.usersRepository.findById(userId)
-    
+
     if (user === null) {
       throw new ResourceNotFoundError()
     }

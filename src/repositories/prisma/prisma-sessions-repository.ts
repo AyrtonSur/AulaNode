@@ -20,6 +20,7 @@ export class PrismaSessionsRepository implements SessionsRepository {
         },
       },
     })
+
     return session
   }
 }

@@ -7,6 +7,7 @@ export class PrismaMoviesRepository implements MoviesRepository {
     const movie = await prisma.movie.create({
       data,
     })
+
     return movie
   }
 }
